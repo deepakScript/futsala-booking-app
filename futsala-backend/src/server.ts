@@ -4,7 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import pool from "./config/db";
 import morgan from "morgan";
-import { PrismaClient } from "@prisma/client";
+import userRoutes from "./routes/userRoutes"
 
 dotenv.config();
 
@@ -17,7 +17,6 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-const prisma = new PrismaClient();
 
 // connect db
 app.get("/test-db", async (req, res) => {
@@ -30,6 +29,9 @@ app.get("/test-db", async (req, res) => {
     res.status(500).json({ error: "Database connection failed" });
   }
 });
+
+// test route
+app.use("/api/v1/users", userRoutes);
 
 
 app.get("/", (_req: Request, res: Response) => {
