@@ -77,6 +77,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+  //my change in the login  section 
 
   try {
     // Check if user exists with the provided email
